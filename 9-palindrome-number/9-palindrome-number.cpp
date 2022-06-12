@@ -2,21 +2,25 @@ class Solution {
 public:
     bool isPalindrome(int x) {
         
-        if(x < 0)
-            return false;
-        
-        std::vector<int> SeparatedInt = {0};
-        
-        for(; x != 0;)
+        if (x < 0)
+        return false;
+
+        int max = 1000000000;
+        while (1)
         {
-            SeparatedInt.push_back(x%10);
-            x /= 10;
+            if (max > x)
+                max /= 10;
+            else
+                break;
         }
-        
-        for(int i=1; i<=SeparatedInt.size()/2; ++i)
+        while (x != 0)
         {
-            if(SeparatedInt[i] != SeparatedInt[SeparatedInt.size()-i])
+            if (x / max != x % 10)
                 return false;
+
+            x = x % max / 10;
+            max /= 100;
+
         }
         
         return true;
