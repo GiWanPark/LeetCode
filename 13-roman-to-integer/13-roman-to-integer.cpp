@@ -1,30 +1,77 @@
 class Solution {
-    const std::map<char, int> RomanMap = { 
-            {'I', 1}
-        ,   {'V', 5}
-        ,   {'X', 10} 
-        ,   {'L', 50} 
-        ,   {'C', 100} 
-        ,   {'D', 500} 
-        ,   {'M', 1000} };
 public:
     int romanToInt(string s) {
         int roman = 0;
-        
 
-        for (int i = 0; i < s.size(); ++i)
+        for (size_t i = 0; i < s.size(); ++i)
         {
-            if (i + 1 < s.size())
+            if (s[i] == 'M')
             {
-                if (RomanMap.find(s[i])->second < RomanMap.find(s[i + 1])->second)
+                roman += 1000;
+            }
+            else if (s[i] == 'D')
+            {
+                roman += 500;
+            }
+            else if (s[i] == 'C')
+            {
+                if (s[i + 1] == 'D')
                 {
-                    roman += RomanMap.find(s[i + 1])->second - RomanMap.find(s[i])->second;
+                    roman += 400;
                     ++i;
-                    continue;
+                }
+                else if (s[i + 1] == 'M')
+                {
+                    roman += 900;
+                    ++i;
+                }
+                else
+                {
+                    roman += 100;
                 }
             }
-            
-            roman += RomanMap.find(s[i])->second;
+            else if (s[i] == 'L')
+            {
+                roman += 50;
+            }
+            else if (s[i] == 'X')
+            {
+                if (s[i + 1] == 'L')
+                {
+                    roman += 40;
+                    ++i;
+                }
+                else if (s[i + 1] == 'C')
+                {
+                    roman += 90;
+                    ++i;
+                }
+                else
+                {
+                    roman += 10;
+                }
+            }
+            else if (s[i] == 'V')
+            {
+                roman += 5;
+            }
+            else if (s[i] == 'I')
+            {
+                if (s[i + 1] == 'X')
+                {
+                    roman += 9;
+                    ++i;
+                }
+                else if (s[i + 1] == 'V')
+                {
+                    roman += 4;
+                    ++i;
+                }
+                else
+                {
+                    roman += 1;
+                }
+            }
         }
 
         return roman;
