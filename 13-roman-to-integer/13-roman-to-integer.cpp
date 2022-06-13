@@ -1,8 +1,5 @@
 class Solution {
-public:
-    int romanToInt(string s) {
-        int roman = 0;
-        const std::map<char, int> RomanMap = { 
+    const std::map<char, int> RomanMap = { 
             {'I', 1}
         ,   {'V', 5}
         ,   {'X', 10} 
@@ -10,6 +7,10 @@ public:
         ,   {'C', 100} 
         ,   {'D', 500} 
         ,   {'M', 1000} };
+public:
+    int romanToInt(string s) {
+        int roman = 0;
+        
 
         for (int i = 0; i < s.size(); ++i)
         {
