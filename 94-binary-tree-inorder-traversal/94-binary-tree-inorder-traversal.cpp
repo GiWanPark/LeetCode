@@ -13,13 +13,24 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> nodes;
-        std::stack<TreeNode*> toVisit;
-        while(1) {
-            while(root) { toVisit.push(root); root=root->left; }
-            if(toVisit.empty()) break;
-            root=toVisit.top(); toVisit.pop();
-            nodes.push_back(root->val);
-            root=root->right;
+        while (root) {
+            if (root -> left) {
+                TreeNode* pre = root -> left;
+                while (pre -> right && pre -> right != root) {
+                    pre = pre -> right;
+                }
+                if (!pre -> right) {
+                    pre -> right = root;
+                    root = root -> left;
+                } else {
+                    pre -> right = NULL;
+                    nodes.push_back(root -> val);
+                    root = root -> right;
+                }
+            } else {
+                nodes.push_back(root -> val);
+                root = root -> right;
+            }
         }
         return nodes;
     }
