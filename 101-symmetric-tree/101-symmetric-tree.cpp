@@ -20,17 +20,11 @@ public:
 	{
 		if (left == nullptr && right == nullptr)
 			return true;
-		else if (left == nullptr && right != nullptr || left != nullptr && right == nullptr)
+		else if (left == nullptr || right == nullptr)
 			return false;
 		if (left->val != right->val)
 			return false;
-		else if (left->val == right->val)
-		{
-			if (compare(left->left, right->right) == false)
-				return false;
-			if (compare(left->right, right->left) == false)
-				return false;
-		}
-		return true;
+
+		return compare(left->left, right->right) && compare(left->right, right->left);
 	}
 };
