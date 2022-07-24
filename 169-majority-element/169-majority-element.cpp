@@ -1,7 +1,7 @@
 class Solution {
 std::map<int, int> xCheck;
 public:
-	int majorityElement(vector<int> nums) {
+	int majorityElement(vector<int>& nums) {
 		for (int n : nums)
 		{
 			std::map<int, int>::iterator it = xCheck.find(n);
